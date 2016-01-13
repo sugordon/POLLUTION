@@ -1,10 +1,5 @@
 applications:
-- path: .
-  name: POLLUTION
+- name: POLLUTION
   memory: 128M
   command: sh run.sh
   buildpack: https://github.com/cloudfoundry/python-buildpack
-  instances: 1
-  domain: mybluemix.net
-  host: pollution
-  disk_quota: 1024M
