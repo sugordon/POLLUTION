@@ -1,0 +1,4 @@
+---
+applications:
+- name: POLLUTION
+  memory: 128M
