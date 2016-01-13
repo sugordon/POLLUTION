@@ -3,4 +3,4 @@ applications:
 - name: POLLUTION
   memory: 128M
   command: sh run.sh
-  buildpack: https://github.com/ephoning/heroku-buildpack-python
+  buildpack:  https://github.com/cloudfoundry/python-buildpack
