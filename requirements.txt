@@ -1,2 +1,1 @@
-requests
-django
+django == 1.9.1
