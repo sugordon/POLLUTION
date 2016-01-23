@@ -301,7 +301,7 @@ th {
   content: "\270f";
 }
 .glyphicon-glass:before {
-  content: "\e001";
+  content: "\e008";
 }
 .glyphicon-music:before {
   content: "\e002";
@@ -3839,7 +3839,7 @@ tbody.collapse.in {
 .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
-  height: 46px;
+  height: 36px;
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
