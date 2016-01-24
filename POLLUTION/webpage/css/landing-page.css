@@ -35,7 +35,7 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
+    background: url(http://www.webdesignerhub.com/wp-content/uploads/2014/03/logo2.png) no-repeat center center;
     background-size: cover;
 }
 
@@ -169,4 +169,7 @@ p.copyright {
     margin: 15px 0 0;
 }
 
+.tabbed{
+	padding: 0px 0px 0px 50px;
+}
 .btnPage{display:inline-block;padding:3px 3px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px}
