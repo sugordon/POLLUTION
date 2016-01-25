@@ -27,6 +27,21 @@ The instructions to obtain all the data is as follow:
 3. use groupbylocation.py to add altitude
 4. use wind extract.py to add uwnd and vwnd.
 
-(To yash: I am still working on adding uwnd and vwnd, but it should be easy)
+#Things that we still need to do before passing into the algorihtm#
+1. merge the uwnd and vwnd data into the final_summary dataframe
+2. delete the last row of dates (2015-12-30) because the information there is not sufficient. A lot of datapoints are missing
+3. For the rest of the pollutant data that has NaN as a value, need to use interpolate function to interpolate the elements back.
+4. Test the algorithm
+5. Check how to incorporate state symbols to latitudes and longitudes
+6. After calculating A and X, we need to add the sources that are of the same state to see how a state affects a certain longitude and latitude. Again, this is done because we only consider places in terms of specific longitude and latitude, the effects of each location would appear puny. 
 
+#Algorithm#
+algorithm.py stores the current algorithm we have.
+Currently, the algorithm is written such that the matrix function takes in a dataframe with lat, lon, alt, uwnd, vwnd and concentration of pollutants of ONE SINGLE MONTH and outputs 
+1. X: which is the rate of emission from sources; and
+2. A: the coefficeints that is supposed to be multiplied to the sources. It can be seen as the weight of each source with respect to a single location.
+
+Some inference from the two matrices:
+1. Row N indicates at place (xN,yN), what is the weight of each city. By taking row N and multiplying it element wise with column A, it should yield the rate of emission of pollutants from one single city and the weight of the source of pollution. Take the weighted average of the product would yield you the weighted average. 
+2. The whole matrix, A and X, only gives you one single month of data. 
 
