@@ -1,3 +1,9 @@
+'''
+This code is used to place related wind data into a summary dataframe. The uwnd and vwnd obtained comes from NOAA: 
+ftp://ftp.cdc.noaa.gov/Datasets/ncep.reanalysis.dailyavgs/surface/ . The nc file is converted to csv files for 
+Apache Spark through matlab. The matlab file is saved as convert.m . 
+'''
+
 import requests, StringIO, pandas as pd, json, re
 import numpy as np
 
@@ -12,13 +18,13 @@ vwnd = pd.read_csv(content_string_v,names = ['lon','lat','time','vwnd'])
 new_uwnd = uwnd[uwnd.uwnd != 0]
 new_uwnd = new_uwnd[uwnd.lon >= 170.0]
 new_uwnd = new_uwnd[uwnd.lon <= 310.0]
-new_uwnd = new_uwnd[uwnd.lat >= 25.0]
+new_uwnd = new_uwnd[uwnd.lat >= 17.5]
 new_uwnd = new_uwnd[uwnd.lat <= 50.0]
 
 new_vwnd = vwnd[vwnd.vwnd != 0]
 new_vwnd = new_vwnd[vwnd.lon >= 170.0]
 new_vwnd = new_vwnd[vwnd.lon <= 310.0]
-new_vwnd = new_vwnd[vwnd.lat >= 25.0]
+new_vwnd = new_vwnd[vwnd.lat >= 17.5]
 new_vwnd = new_vwnd[vwnd.lat <= 50.0]
 
 
@@ -28,6 +34,42 @@ del new_df[4]
 del new_df[5]
 del new_df[6]
 new_df.columns = ['lon','lat','time','uwnd','vwnd']
+
+
+#Change the units of time from "hours after 1800-01-01" to "year-month-day"
+import time
+z=0
+month = 1
+new_df['datetype'] = ""
+for index,rows in new_df.iterrows():
+    #Check to see which month it is and add the appropriate date.
+    #makes it easier to merge the dates together
+    if ((month == 1) or (month == 3) or (month == 5) or (month == 7) or (month == 8) or (month == 10) or (month == 12)):
+        date = 30
+    elif ((month == 4) or (month == 6) or (month == 9) or (month == 11)):
+        date = 29
+    else: 
+        if (z%4):
+            date = 28
+        else:
+            date = 27
+    if month < 10:
+        date_string = str(int(2000)+z)+'-0'+str(month)+'-' + str(date)
+    else:
+        date_string = str(int(2000)+z)+'-'+str(month)+'-' + str(date)
+    date = time.strptime(date_string, "%Y-%m-%d")
+    new_df.set_value(index,'datetype',date)
+    month += 1
+    if(month == 13): 
+        month=1
+        z += 1
+    if (rows['time'] == 1892664):
+        month = 1
+        z = 0
+
+del new_df['time']
+new_df.reset_index()
+
 
 def get_file_content(credentials):
     '''For given credentials, this functions returns a StringIO object containg the file content.'''
