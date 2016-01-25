@@ -25,20 +25,26 @@ of pollutant.
 '''
 
 
-#return coefficients to each place and and source
+#return coefficients to each place and and source for ONE SINGLE MONTH
 #if the matrix is written in the form Ax = B, where A is the coefficient, 
 #B is the final pollutant concentration C, and x is the rate of emission Q
 
 def matrix(df,pollutant):
     total_rows = df.count()
+
     A = np.empty([total_rows,total_rows])
     B = df.as_matrix(columns=df[pollutant])
+
+
+    #This for loop is used to populate the matrix. 
     for i in range(1,total_rows+1): #c1, c2 ..., initial
     final = [df['lon'][index[i]],df['lat'][index[i]],df['alt'][index[i]]
         for j in range(1,total_rows+1): #q1, q2 ...
             init = [df['lon'][index[j]],df['lat'][index[j]],df['alt'][index[j]]
             coefficient = a(df['uwnd'][index[j]],df['vwnd'][index[j]],init[0],init[1], init[2],final[0],final[1],final[2])
             A[i][j] = coefficient
+
+    #solve the matrix
     X = np.linalg.solve(A,B)
     #X is the solution, i.e. the concentration of sources, of different places
     #A is the coefficeints multiplying the sources, i.e. the weight of each source
@@ -53,7 +59,7 @@ def a(u_x, u_y, init_lat, init_lon, init_z, final_lat, final_lon, final_z):
     #init[1] / final[1]: latitude
     #init[2] / final[2]: altitude
     
-    #convert lat lon to x and y
+    #convert lat lon to cartesian coordinates
     dx = (final_lon-init_lon)*40000*cos((final_lat+init_lat)*pi/360)/360
     dy = (init_lat-final_lat)*40000/360
 

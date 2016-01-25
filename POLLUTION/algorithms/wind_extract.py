@@ -71,6 +71,27 @@ del new_df['time']
 new_df.reset_index()
 
 
+'''
+This part is untested
+'''
+for index,rows in final_summary.iterrows():
+    a = rows['lat']
+    b = rows['lon']
+    c = rows['date']
+    #Checks whether there is a value in df_latitude that matches the longitude and latitude final_summary
+    ss = new_df[(new_df.lat == a) & (new_df.lon == b) & (new_df.datetype == c)].values
+    if (len(ss) != 0):
+        #If it is a number, return the value to the cell
+        ss1 = ss[0][3]
+        ss2 = ss[0][4]
+        final_summary.set_value(index, 'uwnd',ss1 )
+        final_summary.set_value(index, 'vwnd',ss2 )
+    else:
+        #if there is no number, then return Not a NUmber for the element
+        final_summary.set_value(index,'uwnd','NaN')
+        final_summary.set_value(index,'vwnd','NaN')
+
+
 def get_file_content(credentials):
     '''For given credentials, this functions returns a StringIO object containg the file content.'''
     
