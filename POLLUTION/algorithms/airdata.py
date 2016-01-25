@@ -136,4 +136,5 @@ final_summary['alt'] = ""
 final_summary['uwnd'] = ""
 final_summary['vwnd'] = ""
 final_summary[['lon','lat']]=final_summary[['lon','lat']].astype(float)
+final_summary = final_summary[final_summary.date != "2015-12-30"]
 
