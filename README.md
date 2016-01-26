@@ -29,11 +29,7 @@ The instructions to obtain all the data is as follow:
 
 #Things that we still need to do before passing into the algorithm#
 
-1. merge the uwnd and vwnd data into the final_summary dataframe (Brenda wrote this part already but the loop is untested)
-2. delete the last row of dates (2015-12-30) because the information there is not sufficient. A lot of datapoints are missing (Done)
-3. For the rest of the pollutant data that has NaN as a value, need to use interpolate function to interpolate the elements back.
 4. Test the algorithm
-5. Check how to incorporate state symbols to latitudes and longitudes
 6. After calculating A and X, we need to add the sources that are of the same state to see how a state affects a certain longitude and latitude. Again, this is done because we only consider places in terms of specific longitude and latitude, the effects of each location would appear puny. 
 
 #Algorithm#
