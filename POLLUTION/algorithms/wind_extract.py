@@ -70,22 +70,26 @@ for index,rows in new_df.iterrows():
 del new_df['time']
 new_df.reset_index()
 
+new_df['month'] = ""
+new_df['year'] = ""
+for index,rows in new_df.iterrows():
+    new_df.set_value(index,'month',rows['datetype'].tm_mon)
+    new_df.set_value(index,'year',rows['datetype'].tm_year)
+new_df.reset_index()
 
-'''
-This part is untested
-'''
 for index,rows in final_summary.iterrows():
     a = rows['lat']
     b = rows['lon']
-    c = rows['date']
+    c = rows['date'].month
+    d = rows['date'].year
     #Checks whether there is a value in df_latitude that matches the longitude and latitude final_summary
-    ss = new_df[(new_df.lat == a) & (new_df.lon == b) & (new_df.datetype == c)].values
+    ss = new_df[(new_df.lat == a) & (new_df.lon == b) & (new_df.month == c) & (new_df.year == d)].values
     if (len(ss) != 0):
         #If it is a number, return the value to the cell
-        ss1 = ss[0][3]
-        ss2 = ss[0][4]
+        ss1 = ss[0][2]
+        ss2 = ss[0][3]
         final_summary.set_value(index, 'uwnd',ss1 )
-        final_summary.set_value(index, 'vwnd',ss2 )
+        final_summary.set_value(index, 'vwnd',ss2)
     else:
         #if there is no number, then return Not a NUmber for the element
         final_summary.set_value(index,'uwnd','NaN')
