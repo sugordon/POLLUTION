@@ -15,7 +15,7 @@
         })
         .when("/history", {
             templateUrl: "partials/history.html",
-            controller: "LandingCtrl",
+            controller: "MapCtrl",
             controllerAs: "vm"
         })
         .when("/info", {

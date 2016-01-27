@@ -1,6 +1,6 @@
 ---
 applications:
-- name: POLLUTION
+- buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+  name: POLLUTION
   memory: 128M
-  command: sh run.sh
-  buildpack:  https://github.com/cloudfoundry/python-buildpack
+  stack: cflinuxfs2
