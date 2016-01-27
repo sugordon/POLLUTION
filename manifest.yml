@@ -5,3 +5,4 @@ applications:
   name: helloworld-html
   memory: 64M
   stack: cflinuxfs2
+  path: webpage
