@@ -13,8 +13,18 @@
             controller: "LandingCtrl",
             controllerAs: "vm"
         })
+        .when("/history", {
+            templateUrl: "partials/history.html",
+            controller: "LandingCtrl",
+            controllerAs: "vm"
+        })
+        .when("/info", {
+            templateUrl: "partials/info.html",
+            controller: "MapCtrl",
+            controllerAs: "vm"
+        })
         .otherwise({
-            redirectTo: "/404.html"
+            redirectTo: "/"
         });
     }
 })();

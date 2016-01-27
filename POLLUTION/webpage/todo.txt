@@ -1,6 +1,0 @@
-ToDo
-Authentication Service
-Policy formatting
-Landing Feature Images
-Minify the Code http://www.crockford.com/javascript/jsmin.html
-
