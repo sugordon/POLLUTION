@@ -1,4 +1,4 @@
-#Algorithm#
+#ReadMe.md#
 
 This readme file is used to allow people tko understand the data extraction, data organization and algorithmic processes involved in Polldentify. 
 
