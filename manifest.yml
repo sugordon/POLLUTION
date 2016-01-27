@@ -2,7 +2,7 @@
 applications:
 - buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   host: helloworld-html-${random-word}
-  name: helloworld-html
+  name: Pollution
   memory: 64M
   stack: cflinuxfs2
   path: webpage
