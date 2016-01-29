@@ -1,6 +1,6 @@
 ---
 applications:
-- buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+- buildpack: https://github.com/ephoning/heroku-buildpack-python
   name: Pollution
   memory: 64M
   stack: cflinuxfs2
