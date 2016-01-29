@@ -1,7 +1,19 @@
 ---
+declared-services:
+  evemongo:
+    label: mongolab
+    plan: sandbox
+  everedis:
+    label: rediscloud
+    plan: 30mb
+
 applications:
-- buildpack: https://github.com/ephoning/heroku-buildpack-python
-  name: Pollution
-  memory: 64M
-  stack: cflinuxfs2
-  path: webpage
+- name: macreduce
+  memory: 256M 
+  instances: 1
+  host: macreduce
+  domain: mybluemix.net
+  path: .
+  services:
+    - everedis
+    - evemongo
