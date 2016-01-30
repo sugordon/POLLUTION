@@ -1,19 +1,8 @@
----
-declared-services:
-  evemongo:
-    label: mongolab
-    plan: sandbox
-  everedis:
-    label: rediscloud
-    plan: 30mb
-
 applications:
-- name: macreduce
-  memory: 256M 
+- path: .
+  memory: 128M
   instances: 1
-  host: macreduce
   domain: mybluemix.net
-  path: .
-  services:
-    - everedis
-    - evemongo
+  name: test234
+  host: test234
+  disk_quota: 1024M
